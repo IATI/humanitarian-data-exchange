@@ -56,9 +56,25 @@ def _process_ckan_dataset(ckan_dataset):
         out_data["title"] = out_data["title"][len(settings.CKAN_TITLE_START) :]
     else:
         problems.append("starts with a different title")
+    if len(ckan_dataset.get("resources")) != 1:
+        problems.append("Does not have exactly 1 resource")
     for ckan_resource in ckan_dataset.get("resources"):
+        description = ckan_resource.get("description")
+        if description.startswith(settings.CKAN_RESOURCE_V1_DESCRIPTION_START):
+            description = description[
+                len(settings.CKAN_RESOURCE_V1_DESCRIPTION_START) :
+            ]
+        else:
+            problems.append("resource starts with a different description")
+        if description.endswith(settings.CKAN_RESOURCE_V1_DESCRIPTION_END):
+            description = description[: -len(settings.CKAN_RESOURCE_V1_DESCRIPTION_END)]
+        else:
+            problems.append("resource ends with a different description")
+        if description != out_data["title"]:
+            problems.append(
+                "resource description country does not match title: " + description
+            )
         out_resource = {
-            "description": ckan_resource.get("description"),
             "url": ckan_resource.get("url"),
         }
         out_data["resources"].append(out_resource)

@@ -12,6 +12,8 @@ CKAN_CAVEATS = 'Information originates from multiple IATI reporting organisation
 
 CKAN_TITLE_START = "Current IATI aid activities in "
 
+CKAN_RESOURCE_V1_DESCRIPTION_START = "Currently-active IATI activities in "
+CKAN_RESOURCE_V1_DESCRIPTION_END = ", in 3W/4W style with HXL hashtags. This dataset has one row for each unique activity/sector/location, so the same IATI activity may occupy multiple rows: use the #activity+id column to count unique activities."
 
 DATASETS_DIRECTORY = os.path.join(
     os.path.dirname(os.path.realpath(__file__)), "..", "datasets"
