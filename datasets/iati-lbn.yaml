@@ -1,0 +1,10 @@
+ckan_id: 501cf0a6-04aa-4725-93b1-2311b1fd751d
+country:
+    iso_2char: LB
+    iso_3char: LBN
+    title: Lebanon
+resource_v1:
+    ckan_id: bce9a233-9a6e-437a-a4be-f05930b06d21
+tags:
+-   ckan_id: 895c9650-8b8e-4613-a273-32144a30c15b
+    ckan_name: crisis-lebanon-hostilities
