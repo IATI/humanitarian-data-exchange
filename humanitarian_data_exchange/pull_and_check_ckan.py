@@ -89,8 +89,7 @@ def _process_ckan_dataset(ckan_dataset):
             "has a different solr_additions/countries! "
             + str(ckan_dataset_solr_additions.get("countries"))
         )
-    # Write out data
-
+    # Return
     return out_data, problems
 
 
