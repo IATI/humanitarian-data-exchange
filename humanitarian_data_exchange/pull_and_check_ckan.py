@@ -48,13 +48,13 @@ def _process_ckan_dataset(ckan_dataset):
             problems.append("does not have the expected tag " + tag_id)
     # Make out data
     out_data = {
-        "id": ckan_dataset.get("id"),
+        "ckan_id": ckan_dataset.get("id"),
         "country": {
             "iso_2char": None,
             "iso_3char": None,
             "title": ckan_dataset.get("title"),
         },
-        "resources": [],
+        "resource_v1": {},
         "tags": [],
     }
     if out_data["country"]["title"].startswith(settings.CKAN_TITLE_START):
@@ -114,11 +114,10 @@ def _process_ckan_dataset(ckan_dataset):
             country_iso_2char=out_data["country"]["iso_2char"]
         ):
             problems.append("Resource D-Portal URL is wrong!")
-        out_resource = {"id": ckan_resource["id"]}
-        out_data["resources"].append(out_resource)
+        out_data["resource_v1"]["ckan_id"] = ckan_resource["id"]
     for ckan_tag in ckan_dataset.get("tags"):
         if ckan_tag.get("id") not in settings.CKAN_TAG_IDS:
-            out_tag = {"id": ckan_tag.get("id"), "name": ckan_tag.get("name")}
+            out_tag = {"ckan_id": ckan_tag.get("id"), "ckan_name": ckan_tag.get("name")}
             out_data["tags"].append(out_tag)
     ckan_dataset_solr_additions = json.loads(ckan_dataset.get("solr_additions", "{}"))
     # Check data (after processing has been done)
