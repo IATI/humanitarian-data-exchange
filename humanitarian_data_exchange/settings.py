@@ -10,6 +10,9 @@ CKAN_TAG_IDS = [
 
 CKAN_CAVEATS = 'Information originates from multiple IATI reporting organisations, and has not been centrally vetted or audited for accuracy or consistency.  \r\n\r\nIncludes only those activities from the [IATI Registry](https://iatiregistry.org/) that are included in [D-Portal](http://www.d-portal.org) and have the status "Implementing".\r\n\r\nThe total number of activities may include duplicates, if (for example) a donor and an implementing partner both report the same activity under different IATI identifiers.\r\n\r\nStart and end dates of activities within the dataset will differ.'
 
+CKAN_TITLE_START = "Current IATI aid activities in "
+
+
 DATASETS_DIRECTORY = os.path.join(
     os.path.dirname(os.path.realpath(__file__)), "..", "datasets"
 )

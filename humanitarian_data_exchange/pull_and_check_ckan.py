@@ -41,6 +41,14 @@ def pull_and_check_ckan():
             "resources": [],
             "tags": [],
         }
+        if out_data["title"].startswith(settings.CKAN_TITLE_START):
+            out_data["title"] = out_data["title"][len(settings.CKAN_TITLE_START) :]
+        else:
+            problems.append(
+                "Resource "
+                + ckan_dataset.get("name")
+                + " starts with a different title"
+            )
         for ckan_resource in ckan_dataset.get("resources"):
             out_resource = {
                 "description": ckan_resource.get("description"),
