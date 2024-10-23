@@ -59,6 +59,17 @@ def pull_and_check_ckan():
             if ckan_tag.get("id") not in settings.CKAN_TAG_IDS:
                 out_tag = {"id": ckan_tag.get("id"), "name": ckan_tag.get("name")}
                 out_data["tags"].append(out_tag)
+        ckan_dataset_solr_additions = json.loads(
+            ckan_dataset.get("solr_additions", "{}")
+        )
+        # Check data (after processing has been done)
+        if ckan_dataset_solr_additions.get("countries") != [out_data["title"]]:
+            problems.append(
+                "Resource "
+                + ckan_dataset.get("name")
+                + " has a different solr_additions/countries! "
+                + str(ckan_dataset_solr_additions.get("countries"))
+            )
         # Write out data
         with open(
             os.path.join(
